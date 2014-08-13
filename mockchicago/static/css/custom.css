@@ -41,6 +41,82 @@ social stuff */
     background-image: url('../img/harper_med_blur.png');
 }
 
-/* #gn-menu .gn-menu-main { */
-/* 	background: nonerepeat scroll 0% 0% maroon; */
-/* } */
+/* color of the "Learn More" button  */
+/* going off what http://paletton.com/#uid=7000u0kw0g4nFoLrBkjHebkRG6m
+tells me is a matching color */
+.btn-skin {
+    color: #FFF;
+    background-color: #C57633;
+    border-color: #C57633;
+}
+
+.btn-skin:hover,
+.btn-skin:focus,
+.btn-skin:active,
+.btn-skin.active {
+  color: #fff;
+  background-color: #003636;
+  border-color: #003636;
+}
+
+.boxed-grey {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.person-thumb {
+	/* width: 270px; */
+	/* width: max; */
+	/* height: 360px; */
+	/* overflow: hidden */;
+}
+
+.person-full {
+	margin-bottom: 15px;
+}
+
+/* hackery to get 5-column rows */
+/*  http://stackoverflow.com/questions/10387740/ */
+.col-xs-5ths,
+.col-sm-5ths,
+.col-md-5ths,
+.col-lg-5ths {
+    position: relative;
+    min-height: 1px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.col-xs-5ths {
+    width: 20%;
+    float: left;
+}
+@media (min-width: 768px) {
+.col-sm-5ths {
+        width: 20%;
+        float: left;
+    }
+}
+@media (min-width: 992px) {
+    .col-md-5ths {
+        width: 20%;
+        float: left;
+    }
+}
+@media (min-width: 1200px) {
+    .col-lg-5ths {
+        width: 20%;
+        float: left;
+    }
+}
+
+/* trying to get vertical alignment */
+/* http://stackoverflow.com/questions/20547819/vertical-align-with-bootstrap-3 */
+.vcenter {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+footer {
+	background-color: maroon;
+}

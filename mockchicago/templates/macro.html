@@ -25,12 +25,12 @@
 			<a class="gn-icon gn-icon-search"><span>Search</span></a>
 			</li> -->
 			<li>
-			  <a href="#about" class="gn-icon gn-icon-download">About</a>
+			  <a href="#about" class="gn-icon gn-icon-download">What do we do?</a>
 			</li>
-			<li><a href="#service" class="gn-icon gn-icon-cog">Service</a></li>
-			<li><a href="#works" class="gn-icon gn-icon-help">Works</a></li>
+			<li><a href="#meet" class="gn-icon gn-icon-cog">Meet the team</a></li>
+			<li><a href="#works" class="gn-icon gn-icon-help">Recent tournaments</a></li>
 			<li>
-			  <a href="#contact" class="gn-icon gn-icon-archive">Contact</a>
+			  <a href="#contact" class="gn-icon gn-icon-archive">Join</a>
 			</li>
 		  </ul>
 		</div><!-- /gn-scroller -->
@@ -69,9 +69,156 @@
 <!-- /Section: intro -->
 {% endmacro %}
 
-{% macro officers() -%}
-<!-- <!-- Section: about -->
+{% macro summary() -%}
 <section id="about" class="home-section text-center bg-gray">
+  <div class="heading-about marginbot-50">
+	<div class="container">
+	  <div class="row">
+		<div class="col-lg-8 col-lg-offset-2">
+
+		  <div class="section-heading">
+			<h2>What do we do?</h2>
+			<p>At the beginning of each year, the American Mock Trial Association releases<a href="http://www.collegemocktrial.org/resources/case-materials/case-updates/2015_civil_case_preview"> new case materials</a>.
+              We spend the rest of the year debating the same case
+              with other schools around the country.</p>
+		  </div>
+
+		</div>
+	  </div>
+	</div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3 col-md-3">
+
+        <div class="service-box">
+		  <div class="service-icon">
+			<i class="fa fa-legal fa-3x"></i>
+		  </div>
+		  <div class="service-desc">
+			<h5>Debate</h5>
+			<p>Join the team as an attorney to hone your legal
+			skills. Attorneys win points for the team by making
+			speeches, examining witnesses, and arguing objections.</p>
+		  </div>
+        </div>
+
+      </div>
+	  <div class="col-sm-3 col-md-3">
+
+        <div class="service-box">
+		  <div class="service-icon">
+            <i class="fa fa-comments-o fa-3x"></i>
+            <!-- <i class="fa fa-smile-o fa-3x"></i>
+            <i class="fa fa-frown-o fa-3x"></i> -->
+		  </div>
+		  <div class="service-desc">
+			<h5>Act</h5>
+			<p>Join the team as a witness to work on your
+			improv. Witnesses win points by being likeable and
+			realistic. Greiving widows should be sad, and theme park
+			mascots should be funny.</p>
+		  </div>
+        </div>
+
+      </div>
+	  <div class="col-sm-3 col-md-3">
+
+        <div class="service-box">
+		  <div class="service-icon">
+			<i class="fa fa-university fa-3x"></i>
+		  </div>
+		  <div class="service-desc">
+			<h5>Compete</h5>
+			<p>Test what you've prepared against some of the best mock
+			trial teams in the country. Our rounds are judged by
+			practicing judges and attorneys in real courthouses.</p>
+		  </div>
+        </div>
+
+      </div>
+	  <div class="col-sm-3 col-md-3">
+
+        <div class="service-box">
+		  <div class="service-icon">
+			<i class="fa fa-trophy fa-3x"></i>
+		  </div>
+		  <div class="service-desc">
+			<h5>Win</h5>
+			<p>We regularly place first or second in the region. Join
+			the team, work hard, and wait for the <a href="www.facebook.com/pages/Mock-Trial-Confessions"> fan mail </a> to roll in.</p>
+		  </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+{% endmacro %}
+
+{% macro build_officer_modal(member, index) -%}
+
+<div class="modal fade"
+     id="{{ "uniqueModal{}".format(index) }}"
+     tabindex="-1"
+     role="dialog"
+     aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">{{ "{}, {}".format(member.full_name(), member.title()) }}</h4>
+      </div>
+      <div class="modal-body">
+        <div class="center-block">
+          <img src="{{ member.img_path() }}"
+               class="img-responsive center-block person-full"/>
+        </div>
+        <p>{{ member.msg_with_email() }} </p>
+      </div>
+      <!-- <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+{% endmacro %}
+
+
+{% macro build_officer(member, index) -%}
+<div class="col-xs-6 col-sm-3 col-md-2 col-md-5ths vcenter">
+  <div class="team boxed-grey">
+    <div class="inner">
+	  <h5>{{ member.full_name() }} </h5>
+      <p class="subtitle"> {{ member.title() }} </p>
+      <div class="avatar">
+        {% if index > 0 %}
+        <a data-toggle="modal" href="#" data-target="{{ "#uniqueModal{}".format(index) }}">
+          {% endif %}
+
+          <img src="{{ member.img_path() }}" alt="" class="img-responsive person-thumb"/>
+          {% if index > 0 %}
+          </a>
+          {% endif %}
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endmacro %}
+
+
+{% macro build_officer_modals(members_with_modals) -%}
+{% for member in members_with_modals %}
+{{ build_officer_modal(member, loop.index) }}
+{% endfor %}
+{% endmacro %}
+
+{% macro officers(officer_members) -%}
+<!-- Section: about -->
+<section id="meet" class="home-section text-center bg-gray">
   <div class="heading-about marginbot-50">
 	<div class="container">
 	  <div class="row">
@@ -88,310 +235,289 @@
   </div>
   <div class="container">
 
+    <div class="center-block">
     <div class="row">
-      <div class="col-xs-6 col-sm-3 col-md-3">
+      <!-- <div class="col-xs-1 col-xs-offset-1">
+      </div> -->
+      {% for officer in officer_members %}
 
-        <div class="team boxed-grey">
-          <div class="inner">
-			<h5>Anna Hanaceck</h5>
-            <p class="subtitle">Pixel Crafter</p>
-            <div class="avatar"><img src="img/team/1.jpg" alt="" class="img-responsive" /></div>
-          </div>
-        </div>
+      {{ build_officer(officer, loop.index) }}
 
-      </div>
-	  <div class="col-xs-6 col-sm-3 col-md-3">
+      {% endfor %}
 
-        <div class="team boxed-grey">
-          <div class="inner">
-			<h5>Maura Daniels</h5>
-            <p class="subtitle">Ruby on Rails</p>
-            <div class="avatar"><img src="img/team/2.jpg" alt="" class="img-responsive" /></div>
-          </div>
-
-		</div>
-      </div>
-	  <div class="col-xs-6 col-sm-3 col-md-3">
-
-        <div class="team boxed-grey">
-          <div class="inner">
-			<h5>Jack Briane</h5>
-            <p class="subtitle">jQuery Ninja</p>
-            <div class="avatar"><img src="img/team/3.jpg" alt="" class="img-responsive" /></div>
-          </div>
-        </div>
-
-      </div>
-	  <div class="col-xs-6 col-sm-3 col-md-3">
-
-        <div class="team boxed-grey">
-          <div class="inner">
-			<h5>Tom Petterson</h5>
-            <p class="subtitle">Typographer</p>
-            <div class="avatar"><img src="img/team/4.jpg" alt="" class="img-responsive" /></div>
-          </div>
-        </div>
-
-      </div>
     </div>
   </div>
+</div>
 </section>
 <!-- /Section: about -->
 {% endmacro %} -->
 
 <!-- currently unused -->
 {% macro services() -%}
-	<!-- Section: services -->
-    <section id="service" class="home-section text-center">
+<!-- Section: services -->
+<section id="service" class="home-section text-center">
 
-	  <div class="heading-about marginbot-50">
-		<div class="container">
-		  <div class="row">
-			<div class="col-lg-8 col-lg-offset-2">
+  <div class="heading-about marginbot-50">
+	<div class="container">
+	  <div class="row">
+		<div class="col-lg-8 col-lg-offset-2">
 
-			  <div class="section-heading">
-				<h2>Our Services</h2>
-				<p>Lorem ipsum dolor sit amet, no nisl mentitum recusabo per, vim at blandit qualisque dissentiunt. Diam efficiantur conclusionemque ut has</p>
-			  </div>
-
-			</div>
+		  <div class="section-heading">
+			<h2>Our Services</h2>
+			<p>Lorem ipsum dolor sit amet, no nisl mentitum recusabo per, vim at blandit qualisque dissentiunt. Diam efficiantur conclusionemque ut has</p>
 		  </div>
+
 		</div>
 	  </div>
-	  <div class="container">
-        <div class="row">
-          <div class="col-sm-3 col-md-3">
+	</div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3 col-md-3">
 
-            <div class="service-box">
-			  <div class="service-icon">
-				<i class="fa fa-code fa-3x"></i>
-			  </div>
-			  <div class="service-desc">
-				<h5>Print</h5>
-				<p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram accommodare.</p>
-			  </div>
-            </div>
-
-          </div>
-		  <div class="col-sm-3 col-md-3">
-
-            <div class="service-box">
-			  <div class="service-icon">
-				<i class="fa fa-suitcase fa-3x"></i>
-			  </div>
-			  <div class="service-desc">
-				<h5>Web Design</h5>
-				<p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram accommodare.</p>
-			  </div>
-            </div>
-
-          </div>
-		  <div class="col-sm-3 col-md-3">
-
-            <div class="service-box">
-			  <div class="service-icon">
-				<i class="fa fa-cog fa-3x"></i>
-			  </div>
-			  <div class="service-desc">
-				<h5>Photography</h5>
-				<p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram accommodare.</p>
-			  </div>
-            </div>
-
-          </div>
-		  <div class="col-sm-3 col-md-3">
-
-            <div class="service-box">
-			  <div class="service-icon">
-				<i class="fa fa-rocket fa-3x"></i>
-			  </div>
-			  <div class="service-desc">
-				<h5>Cloud System</h5>
-				<p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram accommodare.</p>
-			  </div>
-            </div>
-
-          </div>
+        <div class="service-box">
+		  <div class="service-icon">
+			<i class="fa fa-code fa-3x"></i>
+		  </div>
+		  <div class="service-desc">
+			<h5>Print</h5>
+			<p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram accommodare.</p>
+		  </div>
         </div>
-	  </div>
-	</section>
-	<!-- /Section: services -->
+
+      </div>
+	  <div class="col-sm-3 col-md-3">
+
+        <div class="service-box">
+		  <div class="service-icon">
+			<i class="fa fa-suitcase fa-3x"></i>
+		  </div>
+		  <div class="service-desc">
+			<h5>Web Design</h5>
+			<p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram accommodare.</p>
+		  </div>
+        </div>
+
+      </div>
+	  <div class="col-sm-3 col-md-3">
+
+        <div class="service-box">
+		  <div class="service-icon">
+			<i class="fa fa-cog fa-3x"></i>
+		  </div>
+		  <div class="service-desc">
+			<h5>Photography</h5>
+			<p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram accommodare.</p>
+		  </div>
+        </div>
+
+      </div>
+	  <div class="col-sm-3 col-md-3">
+
+        <div class="service-box">
+		  <div class="service-icon">
+			<i class="fa fa-rocket fa-3x"></i>
+		  </div>
+		  <div class="service-desc">
+			<h5>Cloud System</h5>
+			<p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram accommodare.</p>
+		  </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /Section: services -->
 {% endmacro %}
 
-{% macro recent_news() %}
-	<!-- Section: works -->
-    <section id="works" class="home-section text-center bg-gray">
-	  <div class="heading-works marginbot-50">
-		<div class="container">
-		  <div class="row">
-			<div class="col-lg-8 col-lg-offset-2">
 
-			  <div class="section-heading">
-				<h2>Recent Works</h2>
-				<p>Lorem ipsum dolor sit amet, no nisl mentitum recusabo per, vim at blandit qualisque dissentiunt. Diam efficiantur conclusionemque ut has</p>
-			  </div>
+{% macro build_photo(photo) -%}
+<div class="col-md-3">
+  <a href="{{ photo.img_path() }}"
+     title="{{ photo.title }}"
+     data-lightbox-gallery="gallery1">
 
-			</div>
+	<img src="{{ photo.img_path() }}" class="img-responsive" alt="img">
+  </a>
+</div>
+{% endmacro %}
+
+
+{% macro recent_news(photos) %}
+<!-- Section: works -->
+<section id="works" class="home-section text-center bg-gray">
+  <div class="heading-works marginbot-50">
+	<div class="container">
+	  <div class="row">
+		<div class="col-lg-8 col-lg-offset-2">
+
+		  <div class="section-heading">
+			<h2>Recent tournaments</h2>
+			<p>Lorem ipsum dolor sit amet, no nisl mentitum recusabo per, vim at blandit qualisque dissentiunt. Diam efficiantur conclusionemque ut has</p>
 		  </div>
+
 		</div>
 	  </div>
-	  <div class="container">
+	</div>
+  </div>
+  <div class="container">
 
-        <div class="row">
-          <div class="col-sm-12 col-md-12 col-lg-12" >
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-12" >
+        <div class="row gallery-item">
 
-            <div class="row gallery-item">
-              <div class="col-md-3">
-				<a href="img/works/1.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/1@2x.jpg">
-				  <img src="img/works/1.jpg" class="img-responsive" alt="img">
-				</a>
-			  </div>
-			  <div class="col-md-3">
-				<a href="img/works/2.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/1@2x.jpg">
-				  <img src="img/works/2.jpg" class="img-responsive" alt="img">
-				</a>
-			  </div>
-			  <div class="col-md-3">
-				<a href="img/works/3.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/1@2x.jpg">
-				  <img src="img/works/3.jpg" class="img-responsive" alt="img">
-				</a>
-			  </div>
-			  <div class="col-md-3">
-				<a href="img/works/4.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/1@2x.jpg">
-				  <img src="img/works/4.jpg" class="img-responsive" alt="img">
-				</a>
-			  </div>
-			  <div class="col-md-3">
-				<a href="img/works/5.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/1@2x.jpg">
-				  <img src="img/works/5.jpg" class="img-responsive" alt="img">
-				</a>
-			  </div>
-			  <div class="col-md-3">
-				<a href="img/works/6.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/1@2x.jpg">
-				  <img src="img/works/6.jpg" class="img-responsive" alt="img">
-				</a>
-			  </div>
-			  <div class="col-md-3">
-				<a href="img/works/7.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/1@2x.jpg">
-				  <img src="img/works/7.jpg" class="img-responsive" alt="img">
-				</a>
-			  </div>
-			  <div class="col-md-3">
-				<a href="img/works/8.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/1@2x.jpg">
-				  <img src="img/works/8.jpg" class="img-responsive" alt="img">
-				</a>
-			  </div>
-			</div>
+          {% for photo in photos %}
+          {{ build_photo(photo) }}
+          {% endfor %}
 
-          </div>
-        </div>
-	  </div>
-	</section>
-	<!-- /Section: works -->
+          <!-- <div class="col-md-3">
+		  <a href="img/works/2.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/1@2x.jpg">
+		  <img src="img/works/2.jpg" class="img-responsive" alt="img">
+		  </a>
+		  </div>
+		  <div class="col-md-3">
+		  <a href="img/works/3.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/1@2x.jpg">
+		  <img src="img/works/3.jpg" class="img-responsive" alt="img">
+		  </a>
+		  </div>
+		  <div class="col-md-3">
+		  <a href="img/works/4.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/1@2x.jpg">
+		  <img src="img/works/4.jpg" class="img-responsive" alt="img">
+		  </a>
+		  </div>
+		  <div class="col-md-3">
+		  <a href="img/works/5.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/1@2x.jpg">
+		  <img src="img/works/5.jpg" class="img-responsive" alt="img">
+		  </a>
+		  </div>
+		  <div class="col-md-3">
+		  <a href="img/works/6.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/1@2x.jpg">
+		  <img src="img/works/6.jpg" class="img-responsive" alt="img">
+		  </a>
+		  </div>
+		  <div class="col-md-3">
+		  <a href="img/works/7.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/1@2x.jpg">
+		  <img src="img/works/7.jpg" class="img-responsive" alt="img">
+		  </a>
+		  </div>
+		  <div class="col-md-3">
+		  <a href="img/works/8.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/1@2x.jpg">
+		  <img src="img/works/8.jpg" class="img-responsive" alt="img">
+		  </a>
+		  </div>
+		  </div> -->
+
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /Section: works -->
 {% endmacro %}
 
 {% macro contact_us() %}
-	<!-- Section: contact -->
-    <section id="contact" class="home-section text-center">
-	  <div class="heading-contact marginbot-50">
-		<div class="container">
-		  <div class="row">
-			<div class="col-lg-8 col-lg-offset-2">
+<!-- Section: contact -->
+<section id="contact" class="home-section text-center">
+  <div class="heading-contact marginbot-50">
+	<div class="container">
+	  <div class="row">
+		<div class="col-lg-8 col-lg-offset-2">
 
-			  <div class="section-heading">
-				<h2>Get in touch</h2>
-				<p>Lorem ipsum dolor sit amet, no nisl mentitum recusabo per, vim at blandit qualisque dissentiunt. Diam efficiantur conclusionemque ut has</p>
-			  </div>
+		  <div class="section-heading">
+			<h2>Get in touch</h2>
+			<p>Drop us a line if you're interested in joining.</p>
+		  </div>
 
-			</div>
+		</div>
+	  </div>
+	</div>
+  </div>
+  <div class="container">
+
+	<div class="row">
+      <div class="col-lg-8 col-md-offset-2">
+        <div class="boxed-grey">
+          <form id="contact-form">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="name">
+                    Name</label>
+                  <input type="text" class="form-control" id="name" placeholder="Enter name" required="required" />
+                </div>
+                <div class="form-group">
+                  <label for="email">
+                    Email Address</label>
+                  <div class="input-group">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
+                    </span>
+                    <input type="email" class="form-control" id="email" placeholder="Enter email" required="required" /></div>
+                </div>
+                <div class="form-group">
+                  <label for="subject">
+                    Subject</label>
+                  <select id="subject" name="subject" class="form-control" required="required">
+                    <option value="na" selected="">Choose One:</option>
+                    <option value="service">General Customer Service</option>
+                    <option value="suggestions">Suggestions</option>
+                    <option value="product">Product Support</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="name">
+                    Message</label>
+                  <textarea name="message" id="message" class="form-control" rows="9" cols="25" required="required"
+                            placeholder="Message"></textarea>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <button type="submit" class="btn btn-skin pull-right" id="btnContactUs">
+                  Send Message</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+		<div class="widget-contact row">
+		  <div class="col-lg-6">
+			<address>
+			  <strong>Ninestars Ltd.</strong><br>
+			  Big Villa 334 Awesome, Beautiful Suite 1200<br>
+			  San Francisco, CA 94107<br>
+			  <abbr title="Phone">P:</abbr> (123) 456-7890
+			</address>
+		  </div>
+
+		  <div class="col-lg-6">
+			<address>
+			  <strong>Email</strong><br>
+			  <a href="mailto:#">email.name@example.com</a><br />
+			  <a href="mailto:#">name.name@example.com</a>
+			</address>
+
 		  </div>
 		</div>
-	  </div>
-	  <div class="container">
+      </div>
 
-		<div class="row">
-          <div class="col-lg-8 col-md-offset-2">
-            <div class="boxed-grey">
-              <form id="contact-form">
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="name">
-                        Name</label>
-                      <input type="text" class="form-control" id="name" placeholder="Enter name" required="required" />
-                    </div>
-                    <div class="form-group">
-                      <label for="email">
-                        Email Address</label>
-                      <div class="input-group">
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
-                        </span>
-                        <input type="email" class="form-control" id="email" placeholder="Enter email" required="required" /></div>
-                    </div>
-                    <div class="form-group">
-                      <label for="subject">
-                        Subject</label>
-                      <select id="subject" name="subject" class="form-control" required="required">
-                        <option value="na" selected="">Choose One:</option>
-                        <option value="service">General Customer Service</option>
-                        <option value="suggestions">Suggestions</option>
-                        <option value="product">Product Support</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="name">
-                        Message</label>
-                      <textarea name="message" id="message" class="form-control" rows="9" cols="25" required="required"
-                                placeholder="Message"></textarea>
-                    </div>
-                  </div>
-                  <div class="col-md-12">
-                    <button type="submit" class="btn btn-skin pull-right" id="btnContactUs">
-                      Send Message</button>
-                  </div>
-                </div>
-              </form>
-            </div>
-
-			<div class="widget-contact row">
-			  <div class="col-lg-6">
-				<address>
-				  <strong>Ninestars Ltd.</strong><br>
-				  Big Villa 334 Awesome, Beautiful Suite 1200<br>
-				  San Francisco, CA 94107<br>
-				  <abbr title="Phone">P:</abbr> (123) 456-7890
-				</address>
-			  </div>
-
-			  <div class="col-lg-6">
-				<address>
-				  <strong>Email</strong><br>
-				  <a href="mailto:#">email.name@example.com</a><br />
-				  <a href="mailto:#">name.name@example.com</a>
-				</address>
-
-			  </div>
-			</div>
-          </div>
-
-		</div>
-
-	  </div>
-	</section>
-	<!-- /Section: contact -->
+	</div>
+  </div>
+</section>
+<!-- /Section: contact -->
 {% endmacro %}
 
-{% macro footer() -%}
-	<footer>
-	  <div class="container">
-		<div class="row">
-		  <div class="col-md-12 col-lg-12">
 
-			<p>Copyright &copy; 2014 Ninestars - by <a href="http://bootstraptaste.com">Bootstraptaste</a></p>
-		  </div>
-		</div>
+
+{% macro footer() -%}
+<footer>
+  <div class="container">
+	<div class="row">
+	  <div class="col-md-12 col-lg-12">
+
+		<p>Copyright &copy; 2014 Ninestars - by <a href="http://bootstraptaste.com">Bootstraptaste</a></p>
 	  </div>
-	</footer>
+	</div>
+  </div>
+</footer>
 {% endmacro %}

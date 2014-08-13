@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% from "macro.html" import load_js, top_bar, intro,  officers, recent_news,
-contact_us, footer %}
+contact_us, footer, build_officer_modals, summary %}
 
 {% block content %}
 <body data-spy="scroll">
@@ -11,15 +11,22 @@ contact_us, footer %}
 
   {{ intro() }}
 
-  {{ officers() }}
+  {{ summary() }}
 
-  {{ recent_news() }}
+  {{ officers(officer_members) }}
+
+  {{ recent_news(photos) }}
 
   {{ contact_us() }}
 
   {{ footer() }}
 
   {{ load_js() }}
+
+
+  <!-- this needs to be outside of a fixed position element or it breaks -->
+  {{ build_officer_modals(members_with_modals) }}
+
 
 </body>
 

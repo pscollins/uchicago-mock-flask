@@ -1,0 +1,89 @@
+[
+	{
+		"first_name": "JT",
+		"last_name": "Gwozdz",
+		"email": "jtgwozdz@uchicago.edu",
+		"officer_rank": 8,
+		"bio_msg": "Jeramee (J.T.) Gwozdz is a fourth-year political science major and history minor. He hails from the thriving metropolis of Toledo, Ohio. He is a rabid fan of all things sportsball and treats Mock Trial like his varsity sport. When not attending Blackhawks games, he can be reached at",
+		"img_name": "board_jt.jpg"
+	},
+	{
+		"first_name": "Ryne",
+		"last_name": "Cannon",
+		"email": "rynemc@uchicago.edu",
+		"officer_rank": 7,
+		"bio_msg": "Ryne Cannon is a second-year international studies major and Spanish minor from the Wild, Wild West (a.k.a. California). When he isn't trying to fiture out why he chose to come to a school that has temperatures below freezing, he's probably coping by baking a warm apple pie. He can be reached at",
+		"img_name": "board_ryne.jpg"
+	},
+	{
+		"first_name": "Tayryn",
+		"last_name": "Edwards",
+		"email": "tayryne@uchicago.edu",
+		"officer_rank": 6,
+		"bio_msg": "Tayryn (“Tyroo”) Edwards is a third year Sociology and English major who traveled all the way from the “boring” part of California to the actual boring part of Chicago—But luckily, she hasn’t had to mourn the death of fun at all since she’s been at the U of C. When she’s not on the lacrosse field, in a dance studio, performing slam poetry, drawing, or pretending to be an attorney...she’s probably asleep. But in her waking hours, she would absolutely love to hear from you. She can be reached at",
+		"img_name": "board_tayryn.jpg"
+	},
+	{
+		"first_name": "Kayla",
+		"last_name": "Mathisen",
+		"email": "kaylarosemathisen@gmail.com",
+		"officer_rank": 5,
+		"bio_msg":" Kayla Mathisen is a third year majoring in Law, Letters, and Society. She grew up on Long Island, NY. When not busy struggling to suppress any and all hint of a longuyland accent, she can be found muttering her mock trial speeches under her breath while speed walking to play rehearsal. She can be reached at",
+		 "img_name": "board_kayla.jpg"
+	},
+	{
+		"first_name": "Weian",
+		"last_name": "Wang",
+		"email": "weian@uchicago.edu",
+		"officer_rank": 4,
+		"bio_msg": "Weian Wang is a second year Math and HIPS major from the exceptionally diverse Bay Area in the state that brought you In-N-Out Burger (you're welcome). Mock Trial is by far the favorite of her past times, but in her downtime, she can be found misspelling her name (ask me about Wanf), upvoting funnies on Quora, and curled up under the blankets with her one true love: Netflix. She can be reached at",
+		"img_name": "board_weian.jpg"
+	},
+	{
+		"first_name": "Joey",
+		"last_name": "Aronsohn",
+		"officer_rank": 3
+	},
+	{
+		"first_name": "Patrick",
+		"last_name": "Collins",
+		"officer_rank": 2
+	},
+	{
+		"first_name": "Megan",
+		"last_name": "Koehnen",
+		"officer_rank": 1
+	},
+	{
+		"first_name": "Hannah",
+		"last_name": "Gitlin",
+		"officer_rank": 1
+	},
+	{
+		"first_name": "Kathryn",
+		"last_name": "Vandervalk",
+		"officer_rank": 1
+	},
+	{
+		"first_name": "Kiran",
+		"last_name": "Misra",
+		"officer_rank": 1
+	},
+	{
+		"first_name": "Gustavo",
+		"last_name": "Grau",
+		"officer_rank": 1
+	},
+	{
+		"first_name": "Test",
+		"last_name": "Person"
+	},
+	{
+		"first_name": "Another",
+		"last_name": "Test"
+	},
+	{
+		"first_name": "Athird",
+		"last_name": "Testperson"
+	}
+]

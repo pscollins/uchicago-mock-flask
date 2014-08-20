@@ -53,7 +53,7 @@ coverage.xml
 docs/_build/
 
 # API keys
-twitter-hook/config.py
+twitterhook/config.py
 
 # Static files
 build/*

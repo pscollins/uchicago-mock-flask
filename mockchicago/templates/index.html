@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% from "macro.html" import load_js, top_bar, intro,  officers, recent_news,
-contact_us, footer, build_officer_modals, summary %}
+contact_us, footer, build_officer_modals, summary, tournament %}
 
 {% block content %}
 <body data-spy="scroll">
@@ -14,6 +14,8 @@ contact_us, footer, build_officer_modals, summary %}
   {{ summary() }}
 
   {{ officers(officer_members) }}
+
+  {{ tournament() }}
 
   {{ recent_news(photos) }}
 

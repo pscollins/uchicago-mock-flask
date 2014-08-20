@@ -41,6 +41,17 @@ social stuff */
     background-image: url('../img/harper_med_blur.png');
 }
 
+/* picture for the tournament */
+#fire {
+	background-image: url('../img/chicago-fire-big.jpg');
+}
+
+#fire .slogan h1,
+#fire .slogan h2,
+#fire .slogan p {
+	color: #001E1E;
+}
+
 /* color of the "Learn More" button  */
 /* going off what http://paletton.com/#uid=7000u0kw0g4nFoLrBkjHebkRG6m
 tells me is a matching color */

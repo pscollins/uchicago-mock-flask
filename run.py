@@ -1,9 +1,14 @@
 import argparse
 import json
 
+from flask_frozen import Freezer
+
 from mockchicago.app import app, db
 from mockchicago.models import Member
+from twitterhook.app import app as twitter_app
 # from mockchicago import views
+
+TWITTER_APP_PORT = 8001
 
 class BadCommandError(Exception):
     pass
@@ -44,10 +49,16 @@ if __name__ == "__main__":
 
     if action == "run":
         app.run(debug=True, host="0.0.0.0", port=8000)
+    elif action == "freeze":
+        freezer = Freezer(app)
+        freezer.freeze()
+        print("Completed. Check the build/ directory.")
     elif action == "init":
         if args.init_file is not None:
             init_db(open(args.init_file))
         else:
             raise BadCommandError()
+    elif action == "twitter":
+        twitter_app.run(host="0.0.0.0", port=TWITTER_APP_PORT)
     else:
         raise BadCommandError()

@@ -10,6 +10,8 @@
 <script src="/static/js/stellar.js"></script>
 <!-- Custom Theme JavaScript -->
 <script src="/static/js/custom.js"></script>
+{# New JS #}
+<script src="https://squaresend.com/squaresend.js"></script>
 {% endmacro %}
 
 {% macro top_bar() -%}
@@ -20,15 +22,18 @@
 	  <nav class="gn-menu-wrapper">
 		<div class="gn-scroller">
 		  <ul class="gn-menu">
-            <!-- <li class="gn-search-item">
-			<input placeholder="Search" type="search" class="gn-search">
-			<a class="gn-icon gn-icon-search"><span>Search</span></a>
-			</li> -->
 			<li>
-			  <a href="#about" class="gn-icon gn-icon-download">What do we do?</a>
+			  <a href="#about" class="gn-icon gn-icon-help">What do we do?</a>
 			</li>
-			<li><a href="#meet" class="gn-icon gn-icon-cog">Meet the team</a></li>
-			<li><a href="#works" class="gn-icon gn-icon-help">Recent tournaments</a></li>
+			<li>
+			  <a href="#meet" class="gn-icon gn-icon-download">Meet the team</a>
+			</li>
+			<li>
+			  <a href="#fire" class="gn-icon gn-icon-article">The Great Chicago Fire</a>
+			</li>
+			<li>
+			  <a href="#works" class="gn-icon gn-icon-pictures" >Recent tournaments</a>
+			</li>
 			<li>
 			  <a href="#contact" class="gn-icon gn-icon-archive">Join</a>
 			</li>
@@ -252,84 +257,31 @@
 <!-- /Section: about -->
 {% endmacro %} -->
 
-<!-- currently unused -->
-{% macro services() -%}
-<!-- Section: services -->
-<section id="service" class="home-section text-center">
 
+{% macro tournament() -%}
+<section id="fire" class="intro">
+  <div class="slogan">
+	<h1>The Great Chicago Fire</h1>
+			<h2> Invitational Tournament </h2>
+	{# <a href="#about" class="btn btn-skin scroll">Learn more</a> #}
+  </div>
+</section>
+<section id="fire-info" class="home-section text-center bg-gray">
   <div class="heading-about marginbot-50">
 	<div class="container">
 	  <div class="row">
 		<div class="col-lg-8 col-lg-offset-2">
-
 		  <div class="section-heading">
-			<h2>Our Services</h2>
-			<p>Lorem ipsum dolor sit amet, no nisl mentitum recusabo per, vim at blandit qualisque dissentiunt. Diam efficiantur conclusionemque ut has</p>
+			<p>The Great Chicago Fire is the University's invitational mock trial tournament. This year, it will be held from January 31 to February 1, 2015. We will be sending out invitations starting in the early fall/late summer of 2014. To learn more, please contact <a href="mailto:2f9but0j">the tournament committee.</a></p>
 		  </div>
-
 		</div>
 	  </div>
 	</div>
   </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-3 col-md-3">
-
-        <div class="service-box">
-		  <div class="service-icon">
-			<i class="fa fa-code fa-3x"></i>
-		  </div>
-		  <div class="service-desc">
-			<h5>Print</h5>
-			<p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram accommodare.</p>
-		  </div>
-        </div>
-
-      </div>
-	  <div class="col-sm-3 col-md-3">
-
-        <div class="service-box">
-		  <div class="service-icon">
-			<i class="fa fa-suitcase fa-3x"></i>
-		  </div>
-		  <div class="service-desc">
-			<h5>Web Design</h5>
-			<p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram accommodare.</p>
-		  </div>
-        </div>
-
-      </div>
-	  <div class="col-sm-3 col-md-3">
-
-        <div class="service-box">
-		  <div class="service-icon">
-			<i class="fa fa-cog fa-3x"></i>
-		  </div>
-		  <div class="service-desc">
-			<h5>Photography</h5>
-			<p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram accommodare.</p>
-		  </div>
-        </div>
-
-      </div>
-	  <div class="col-sm-3 col-md-3">
-
-        <div class="service-box">
-		  <div class="service-icon">
-			<i class="fa fa-rocket fa-3x"></i>
-		  </div>
-		  <div class="service-desc">
-			<h5>Cloud System</h5>
-			<p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram accommodare.</p>
-		  </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
 </section>
-<!-- /Section: services -->
+
 {% endmacro %}
+
 
 
 {% macro build_photo(photo) -%}
@@ -354,7 +306,7 @@
 
 		  <div class="section-heading">
 			<h2>Recent tournaments</h2>
-			<p>Lorem ipsum dolor sit amet, no nisl mentitum recusabo per, vim at blandit qualisque dissentiunt. Diam efficiantur conclusionemque ut has</p>
+			<p>Here are some photos of what we've been up to lately. If you'd like to add something, just tweet with hashtag "#ucphotos", and we'll find it!</p>
 		  </div>
 
 		</div>
@@ -365,10 +317,10 @@
 
     <div class="row">
       <div class="col-sm-12 col-md-12 col-lg-12" >
-        <div class="row gallery-item">
+        <div id="photo-display" class="row gallery-item" onload="init_photos()">
 
           {% for photo in photos %}
-          {{ build_photo(photo) }}
+			{{ build_photo(photo) }}
           {% endfor %}
 
           <!-- <div class="col-md-3">
@@ -425,9 +377,8 @@
 
 		  <div class="section-heading">
 			<h2>Get in touch</h2>
-			<p>Drop us a line if you're interested in joining.</p>
+			<p><a href="mailto:2f9hpgg0">Drop us a line if you're interested in joining.</a></p>
 		  </div>
-
 		</div>
 	  </div>
 	</div>
@@ -436,68 +387,23 @@
 
 	<div class="row">
       <div class="col-lg-8 col-md-offset-2">
-        <div class="boxed-grey">
-          <form id="contact-form">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="name">
-                    Name</label>
-                  <input type="text" class="form-control" id="name" placeholder="Enter name" required="required" />
-                </div>
-                <div class="form-group">
-                  <label for="email">
-                    Email Address</label>
-                  <div class="input-group">
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
-                    </span>
-                    <input type="email" class="form-control" id="email" placeholder="Enter email" required="required" /></div>
-                </div>
-                <div class="form-group">
-                  <label for="subject">
-                    Subject</label>
-                  <select id="subject" name="subject" class="form-control" required="required">
-                    <option value="na" selected="">Choose One:</option>
-                    <option value="service">General Customer Service</option>
-                    <option value="suggestions">Suggestions</option>
-                    <option value="product">Product Support</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="name">
-                    Message</label>
-                  <textarea name="message" id="message" class="form-control" rows="9" cols="25" required="required"
-                            placeholder="Message"></textarea>
-                </div>
-              </div>
-              <div class="col-md-12">
-                <button type="submit" class="btn btn-skin pull-right" id="btnContactUs">
-                  Send Message</button>
-              </div>
-            </div>
-          </form>
-        </div>
-
 		<div class="widget-contact row">
 		  <div class="col-lg-6">
 			<address>
-			  <strong>Ninestars Ltd.</strong><br>
-			  Big Villa 334 Awesome, Beautiful Suite 1200<br>
-			  San Francisco, CA 94107<br>
-			  <abbr title="Phone">P:</abbr> (123) 456-7890
+			  <strong>UChicago Mock Trial</strong><br>
+			  5801 S Ellis Ave<br>
+			  Chicago, IL 60637<br>
 			</address>
 		  </div>
 
 		  <div class="col-lg-6">
 			<address>
-			  <strong>Email</strong><br>
-			  <a href="mailto:#">email.name@example.com</a><br />
-			  <a href="mailto:#">name.name@example.com</a>
+			  <strong>Social Media</strong><br />
+			  <a href="https://www.facebook.com/ucmocktrial">Facebook</a><br />
+			  <a href="https://github.com/capitalsigma/uchicago-mock-flask">
+				Github
+			  </a><br />
 			</address>
-
-		  </div>
 		</div>
       </div>
 

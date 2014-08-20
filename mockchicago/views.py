@@ -21,3 +21,9 @@ def index():
                            officer_members=officer_members,
                            members_with_modals=officer_members,
                            photos=photos)
+
+# for f in glob.glob("*.jpg"):
+#     print("f: {}".format(f))
+#     photo = Photo(f, "Test title: {}".format(f))
+#     db.session.add(photo)
+#     print("added photo: {}".format(photo))

@@ -54,3 +54,6 @@ docs/_build/
 
 # API keys
 twitter-hook/config.py
+
+# Static files
+build/*

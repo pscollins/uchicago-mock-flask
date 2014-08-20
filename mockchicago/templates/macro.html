@@ -282,84 +282,6 @@
 
 {% endmacro %}
 
-<!-- currently unused -->
-{% macro services() -%}
-<!-- Section: services -->
-<section id="service" class="home-section text-center">
-
-  <div class="heading-about marginbot-50">
-	<div class="container">
-	  <div class="row">
-		<div class="col-lg-8 col-lg-offset-2">
-
-		  <div class="section-heading">
-			<h2>Our Services</h2>
-			<p>Lorem ipsum dolor sit amet, no nisl mentitum recusabo per, vim at blandit qualisque dissentiunt. Diam efficiantur conclusionemque ut has</p>
-		  </div>
-
-		</div>
-	  </div>
-	</div>
-  </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-3 col-md-3">
-
-        <div class="service-box">
-		  <div class="service-icon">
-			<i class="fa fa-code fa-3x"></i>
-		  </div>
-		  <div class="service-desc">
-			<h5>Print</h5>
-			<p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram accommodare.</p>
-		  </div>
-        </div>
-
-      </div>
-	  <div class="col-sm-3 col-md-3">
-
-        <div class="service-box">
-		  <div class="service-icon">
-			<i class="fa fa-suitcase fa-3x"></i>
-		  </div>
-		  <div class="service-desc">
-			<h5>Web Design</h5>
-			<p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram accommodare.</p>
-		  </div>
-        </div>
-
-      </div>
-	  <div class="col-sm-3 col-md-3">
-
-        <div class="service-box">
-		  <div class="service-icon">
-			<i class="fa fa-cog fa-3x"></i>
-		  </div>
-		  <div class="service-desc">
-			<h5>Photography</h5>
-			<p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram accommodare.</p>
-		  </div>
-        </div>
-
-      </div>
-	  <div class="col-sm-3 col-md-3">
-
-        <div class="service-box">
-		  <div class="service-icon">
-			<i class="fa fa-rocket fa-3x"></i>
-		  </div>
-		  <div class="service-desc">
-			<h5>Cloud System</h5>
-			<p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram accommodare.</p>
-		  </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
-<!-- /Section: services -->
-{% endmacro %}
 
 
 {% macro build_photo(photo) -%}
@@ -384,7 +306,7 @@
 
 		  <div class="section-heading">
 			<h2>Recent tournaments</h2>
-			<p>Lorem ipsum dolor sit amet, no nisl mentitum recusabo per, vim at blandit qualisque dissentiunt. Diam efficiantur conclusionemque ut has</p>
+			<p>Here are some photos of what we've been up to lately. If you'd like to add something, just tweet with hashtag "#ucphotos", and we'll find it!</p>
 		  </div>
 
 		</div>
@@ -395,10 +317,10 @@
 
     <div class="row">
       <div class="col-sm-12 col-md-12 col-lg-12" >
-        <div class="row gallery-item">
+        <div id="photo-display" class="row gallery-item" onload="init_photos()">
 
           {% for photo in photos %}
-          {{ build_photo(photo) }}
+			{{ build_photo(photo) }}
           {% endfor %}
 
           <!-- <div class="col-md-3">

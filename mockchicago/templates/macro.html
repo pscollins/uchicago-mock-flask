@@ -1,4 +1,4 @@
-{% macro load_js() -%}
+{% macro load_js(remote_url) -%}
 <!-- Core JavaScript Files -->
 <script src="/static/js/jquery.min.js"></script>
 <script src="/static/js/bootstrap.min.js"></script>
@@ -8,10 +8,13 @@
 <script src="/static/js/jquery.scrollTo.js"></script>
 <script src="/static/js/nivo-lightbox.min.js"></script>
 <script src="/static/js/stellar.js"></script>
-<!-- Custom Theme JavaScript -->
-<script src="/static/js/custom.js"></script>
 {# New JS #}
 <script src="https://squaresend.com/squaresend.js"></script>
+<script src="/static/js/lightbox-custom.js"></script>
+<script src="{{ remote_url }}/new_photos_html?callback=initPhotos"> </script>
+<!-- Custom Theme JavaScript -->
+{# Note that this needs to load **after** the AJAX above #}
+<script src="/static/js/custom.js"></script>
 {% endmacro %}
 
 {% macro top_bar() -%}
@@ -32,7 +35,7 @@
 			  <a href="#fire" class="gn-icon gn-icon-article">The Great Chicago Fire</a>
 			</li>
 			<li>
-			  <a href="#works" class="gn-icon gn-icon-pictures" >Recent tournaments</a>
+			  <a href="#works" class="gn-icon gn-icon-pictures" >Recent news</a>
 			</li>
 			<li>
 			  <a href="#contact" class="gn-icon gn-icon-archive">Join</a>
@@ -305,7 +308,7 @@
 		<div class="col-lg-8 col-lg-offset-2">
 
 		  <div class="section-heading">
-			<h2>Recent tournaments</h2>
+			<h2>Recent news</h2>
 			<p>Here are some photos of what we've been up to lately. If you'd like to add something, just tweet with hashtag "#ucphotos", and we'll find it!</p>
 		  </div>
 
@@ -317,11 +320,11 @@
 
     <div class="row">
       <div class="col-sm-12 col-md-12 col-lg-12" >
-        <div id="photo-display" class="row gallery-item" onload="init_photos()">
+        <div id="photo-display" class="row gallery-item">
 
-          {% for photo in photos %}
-			{{ build_photo(photo) }}
-          {% endfor %}
+          {# {% for photo in photos %} #}
+		  {# 	{{ build_photo(photo) }} #}
+          {# {% endfor %} #}
 
           <!-- <div class="col-md-3">
 		  <a href="img/works/2.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/1@2x.jpg">

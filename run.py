@@ -58,7 +58,9 @@ if __name__ == "__main__":
             init_db(open(args.init_file))
         else:
             raise BadCommandError()
+    elif action == "clean":
+        db.drop_all()
     elif action == "twitter":
-        twitter_app.run(host="0.0.0.0", port=TWITTER_APP_PORT)
+        twitter_app.run(host="0.0.0.0", port=TWITTER_APP_PORT, debug=True)
     else:
         raise BadCommandError()

@@ -3,6 +3,8 @@ from flask import request, render_template
 from mockchicago.app import app
 from mockchicago.models import Member, Photo
 
+REMOTE_URL="//payback.ml:8001"
+
 @app.route("/")
 def index():
     all_officers = Member.query.order_by(
@@ -20,7 +22,8 @@ def index():
     return render_template("index.html", president=None,
                            officer_members=officer_members,
                            members_with_modals=officer_members,
-                           photos=photos)
+                           photos=photos,
+                           remote_url=REMOTE_URL)
 
 # for f in glob.glob("*.jpg"):
 #     print("f: {}".format(f))

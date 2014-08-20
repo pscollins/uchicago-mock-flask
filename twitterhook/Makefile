@@ -3,7 +3,7 @@ CONF_FILE=config.py
 
 # 'private' task for echoing instructions
 _pwd_prompt:
-	@echo "Contact pscollins@uchicago.edu for the password."
+	@echo "Contact pscollins@uchicago.edu for the password. Hint: same as twitter"
 
 # to create conf/settings.json
 decrypt_conf: _pwd_prompt

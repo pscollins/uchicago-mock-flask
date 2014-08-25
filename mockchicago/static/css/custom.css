@@ -44,6 +44,7 @@ social stuff */
 /* picture for the tournament */
 #fire {
 	background-image: url('../img/chicago-fire-big.jpg');
+	background-size: cover;
 }
 
 #fire .slogan h1,

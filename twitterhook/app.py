@@ -14,6 +14,7 @@ class TwitterQuery:
     <img src="{photo_url}" class="img-responsive" alt="img"></img>
     </a>
     </div>'''
+    MAX_COUNT = 20
     def __init__(self):
         self.twitter = twitter.Twitter(auth=twitter.OAuth(
             config.ACCESS_TOKEN,
@@ -22,7 +23,8 @@ class TwitterQuery:
             config.API_SECRET))
 
     def get_photos(self):
-        resp = self.twitter.search.tweets(q=self.WATCHED_TAG)
+        resp = self.twitter.search.tweets(
+            q=self.WATCHED_TAG, count=self.MAX_COUNT)
 
         print("Getting photos. Resp: {}".format(resp))
 

@@ -165,7 +165,6 @@
 {% endmacro %}
 
 {% macro build_officer_modal(member, index) -%}
-
 <div class="modal fade"
      id="{{ "uniqueModal{}".format(index) }}"
      tabindex="-1"
@@ -184,14 +183,9 @@
         </div>
         <p>{{ member.msg_with_email() }} </p>
       </div>
-      <!-- <div class="modal-footer">
-      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      <button type="button" class="btn btn-primary">Save changes</button>
-      </div> -->
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-
 {% endmacro %}
 
 
@@ -260,28 +254,118 @@
 <!-- /Section: about -->
 {% endmacro %} -->
 
+{% macro tournament_banner() -%}
+<div class="col-xs-6 col-sm-3 col-md-2 col-md-5ths vcenter">
+  <div class="team boxed-grey">
+    <div class="inner">
+	  <h5> The Great Chicago Fire </h5>
+      <p class="subtitle"> Invitational Tournament </p>
+      <div class="avatar">
+
+        {# <a data-toggle="modal" href="#" data-target="{{ "#uniqueModal{}".format(index) }}"> #}
+
+        <img src="/static/img/gcf-transparent.png" alt="" class="img-responsive"/>
+
+          {# </a> #}
+
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endmacro %}
+
+{% macro tournament_modal() -%}
+  <div class="modal fade"
+       id="tournament-modal"
+       tabindex="-1"
+       role="dialog"
+       aria-hidden="true">
+	   <div class="modal-dialog">
+		 <div class="modal-content">
+		   <div class="modal-header">
+			 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+			 <h4 class="modal-title">Great Chicago Fire Elimination Rules</h4>
+		   </div>
+		   <div class="modal-body">
+			 <div class="center-block">
+			   <img src="/static/img/gcf-logo.png"
+					class="img-responsive center-block"/>
+
+			   <p>
+				 Mockers will compete as a school, instead of as
+				 independent teams. There will be sixteen schools at the
+				 tournament; each school will have two teams. First
+				 round, each school will be paired with another
+				 school. For example, if School 1 was paired with School
+				 2, each of School 1’s teams (1A and 1B) would the
+				 corresponding team from School 2 (2A and 2B,
+				 respectively). For each pairing of schools, there are
+				 two trials, each with three ballots, for a total of six
+				 ballots (1A v.1B & 2A v. 2B, three ballots each). From
+				 these six ballots, one of the schools is determined the
+				 winner of the pairing, and the other school is
+				 eliminated, and moves on to the next round where they
+				 compete against another school that won in the first
+				 round, until only two schools are left in the
+				 bracket.
+			   </p>
+
+				 <p>
+				   When a school loses a round, they drop into a
+				   normal tournament with weighted pairings, like a
+				   standard AMTA style tournament, so every team will
+				   play a full eight rounds. The champion of the
+				   regular tournament will be awarded 3rd place.
+				 </p>
+
+		   </div>
+		 </div><!-- /.modal-content -->
+	   </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+{% endmacro %}
+
 
 {% macro tournament() -%}
-<section id="fire" class="intro">
-  <div class="slogan">
-	<h1>The Great Chicago Fire</h1>
-			<h2> Invitational Tournament </h2>
-	{# <a href="#about" class="btn btn-skin scroll">Learn more</a> #}
-  </div>
-</section>
-<section id="fire-info" class="home-section text-center bg-gray">
-  <div class="heading-about marginbot-50">
-	<div class="container">
-	  <div class="row">
-		<div class="col-lg-8 col-lg-offset-2">
-		  <div class="section-heading">
-			<p>The Great Chicago Fire is the University's invitational mock trial tournament. This year, it will be held from January 31 to February 1, 2015. We will be sending out invitations starting in the early fall/late summer of 2014. To learn more, please contact <a href="mailto:2f9but0j">the tournament committee.</a></p>
+  <section id="fire" class="intro">
+	<div class="slogan" id="gcf">
+	  <h1>The Great Chicago Fire</h1>
+	  <h2> Invitational Tournament </h2>
+	  {# <a href="#about" class="btn btn-skin scroll">Learn more</a> #}
+	  {# <img src="/static/img/gcf-transparent.png" alt="" class="img-responsive"/> #}
+	  {# <img src="/static/img/seal.png" alt="" class="img-responsive"/> #}
+	</div>
+	{# {{ tournament_banner() }} #}
+  </section>
+  <section id="fire-info" class="home-section text-center bg-gray">
+	<div class="heading-about marginbot-50">
+	  <div class="container">
+		<div class="row">
+		  <div class="col-lg-8 col-lg-offset-2">
+			<div class="section-heading">
+			  <p>The Great Chicago Fire is the University's
+			  invitational mock trial tournament. This year, it will
+			  be held from January 31 to February 1, 2015 at the Daley
+			  Center in Downtown Chicago. Unlike most mock trial
+			  tournaments, the Great Chicago Fire will feature
+				<a data-toggle="modal" href="#" data-target="#tournament-modal">
+				  bracket style elimination
+				</a>.
+			  </p>
+			  <p>
+				We will be sending out invitations starting in the
+				early fall/late summer of 2014. To learn more, please
+				contact <a href="mailto:2f9but0j">the tournament
+				committee.</a>
+			  </p>
+			</div>
 		  </div>
 		</div>
 	  </div>
 	</div>
-  </div>
-</section>
+  </section>
+
 
 {% endmacro %}
 
@@ -326,42 +410,7 @@
 		  {# 	{{ build_photo(photo) }} #}
           {# {% endfor %} #}
 
-          <!-- <div class="col-md-3">
-		  <a href="img/works/2.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/1@2x.jpg">
-		  <img src="img/works/2.jpg" class="img-responsive" alt="img">
-		  </a>
-		  </div>
-		  <div class="col-md-3">
-		  <a href="img/works/3.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/1@2x.jpg">
-		  <img src="img/works/3.jpg" class="img-responsive" alt="img">
-		  </a>
-		  </div>
-		  <div class="col-md-3">
-		  <a href="img/works/4.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/1@2x.jpg">
-		  <img src="img/works/4.jpg" class="img-responsive" alt="img">
-		  </a>
-		  </div>
-		  <div class="col-md-3">
-		  <a href="img/works/5.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/1@2x.jpg">
-		  <img src="img/works/5.jpg" class="img-responsive" alt="img">
-		  </a>
-		  </div>
-		  <div class="col-md-3">
-		  <a href="img/works/6.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/1@2x.jpg">
-		  <img src="img/works/6.jpg" class="img-responsive" alt="img">
-		  </a>
-		  </div>
-		  <div class="col-md-3">
-		  <a href="img/works/7.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/1@2x.jpg">
-		  <img src="img/works/7.jpg" class="img-responsive" alt="img">
-		  </a>
-		  </div>
-		  <div class="col-md-3">
-		  <a href="img/works/8.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/1@2x.jpg">
-		  <img src="img/works/8.jpg" class="img-responsive" alt="img">
-		  </a>
-		  </div>
-		  </div> -->
+
 
       </div>
     </div>

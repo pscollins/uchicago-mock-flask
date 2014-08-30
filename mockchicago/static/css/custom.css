@@ -43,8 +43,16 @@ social stuff */
 
 /* picture for the tournament */
 #fire {
-	background-image: url('../img/chicago-fire-big.jpg');
+	/* this is a fallback for when multiple backgrounds aren't supported */
+	/* background-image: url('../img/chicago-fire-big.jpg'); */
+	background-image: url('../img/seal.png'), url('../img/chicago-fire-big.jpg');
 	background-size: cover;
+}
+
+/* gcf logo overlay */
+#gcf {
+	/* background-image: url('../img/seal.png'); */
+	/* background-size: 100% 100%; */
 }
 
 #fire .slogan h1,

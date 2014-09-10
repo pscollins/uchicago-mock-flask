@@ -6,6 +6,9 @@ from flask_frozen import Freezer
 from mockchicago.app import app, db
 from mockchicago.models import Member
 from twitterhook.app import app as twitter_app
+from tornado.wsgi import WSGIContainer
+from tornado.httpserver import HTTPServer
+from tornado.ioloop import IOLoop
 # from mockchicago import views
 
 TWITTER_APP_PORT = 8001
@@ -61,6 +64,9 @@ if __name__ == "__main__":
     elif action == "clean":
         db.drop_all()
     elif action == "twitter":
-        twitter_app.run(host="0.0.0.0", port=TWITTER_APP_PORT, debug=True)
+        # twitter_app.run(host="0.0.0.0", port=TWITTER_APP_PORT, debug=True)
+        twitter_server = HTTPServer(WSGIContainer(twitter_app))
+        twitter_server.listen(TWITTER_APP_PORT)
+        IOLoop.instance().start()
     else:
         raise BadCommandError()

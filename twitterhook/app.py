@@ -23,14 +23,15 @@ class TwitterQuery:
             config.API_SECRET))
 
     def get_photos(self):
-        resp = self.twitter.search.tweets(
-            q=self.WATCHED_TAG, count=self.MAX_COUNT)
+        # resp = self.twitter.search.tweets(
+        #     q=self.WATCHED_TAG, count=self.MAX_COUNT)
+        resp = self.twitter.statuses.mentions_timeline()
 
         print("Getting photos. Resp: {}".format(resp))
 
         media = []
         try:
-            for status in resp['statuses']:
+            for status in resp:
                 print("Building for status: {}".format(status))
                 el = self._build_media(status)
                 if el:

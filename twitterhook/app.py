@@ -1,9 +1,18 @@
 import twitter
 import collections
+import itertools
 
 from twitterhook import config
 from flask import Flask
 from flask.ext.jsonpify import jsonify
+
+def grouper(n, iterable):
+    it = iter(iterable)
+    while True:
+       chunk = tuple(itertools.islice(it, n))
+       if not chunk:
+           return
+       yield chunk
 
 class TwitterQuery:
     WATCHED_TAG = "#ucphotos"
@@ -14,6 +23,8 @@ class TwitterQuery:
     <img src="{photo_url}" class="img-responsive" alt="img"></img>
     </a>
     </div>'''
+    ROW_FMT = '''<div class="row"> {} </div>'''
+    PER_ROW = 4
     MAX_COUNT = 20
     def __init__(self):
         self.twitter = twitter.Twitter(auth=twitter.OAuth(
@@ -50,9 +61,13 @@ class TwitterQuery:
             text = element['text']
             for image in element['images']:
                 resp.append(self.PHOTO_FMT.format(
-                    photo_url=image, photo_title=text))
+                    photo_url=image, photo_title=text.replace("\n", " ")))
 
-        return "\n".join(resp)
+        wrapped_rows = [self.ROW_FMT.format("\n".join(group))
+                        for group in grouper(self.PER_ROW,
+                                             resp)]
+
+        return "\n".join(wrapped_rows)
 
     def _build_media(self, status):
         this_media = []

@@ -12,6 +12,7 @@ from tornado.ioloop import IOLoop
 # from mockchicago import views
 
 TWITTER_APP_PORT = 80
+TWITTER_APP_DEBUG_PORT = 8001
 
 class BadCommandError(Exception):
     pass
@@ -35,13 +36,19 @@ if __name__ == "__main__":
         "action",
         metavar="action",
         nargs=1,
-        help="(run), (init)alize from file, or (gen)erate.")
+        help="(run), (init)alize from file, or (freeze).")
     arg_parser.add_argument(
         "-f",
         dest="init_file",
         default=None,
         help=("Supply a JSON-formatted configuration file"
               "to initialize the database."))
+    arg_parser.add_argument(
+        "-d",
+        dest="debug",
+        action="store_true",
+        default=False,
+        help="Turn on debugging.")
 
     args = arg_parser.parse_args()
 
@@ -49,9 +56,10 @@ if __name__ == "__main__":
     print("action eq? {}".format(args.action == "init"))
 
     action = args.action[0]
+    debug = args.debug
 
     if action == "run":
-        app.run(debug=True, host="0.0.0.0", port=8000)
+        app.run(debug=debug, host="0.0.0.0", port=8000)
     elif action == "freeze":
         freezer = Freezer(app)
         freezer.freeze()
@@ -64,9 +72,11 @@ if __name__ == "__main__":
     elif action == "clean":
         db.drop_all()
     elif action == "twitter":
-        # twitter_app.run(host="0.0.0.0", port=TWITTER_APP_PORT, debug=True)
-        twitter_server = HTTPServer(WSGIContainer(twitter_app))
-        twitter_server.listen(TWITTER_APP_PORT)
-        IOLoop.instance().start()
+        if debug:
+            twitter_app.run(host="0.0.0.0", port=TWITTER_APP_PORT, debug=True)
+        else:
+            twitter_server = HTTPServer(WSGIContainer(twitter_app))
+            twitter_server.listen(TWITTER_APP_PORT)
+            IOLoop.instance().start()
     else:
         raise BadCommandError()

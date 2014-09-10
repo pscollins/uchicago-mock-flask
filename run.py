@@ -73,7 +73,8 @@ if __name__ == "__main__":
         db.drop_all()
     elif action == "twitter":
         if debug:
-            twitter_app.run(host="0.0.0.0", port=TWITTER_APP_PORT, debug=True)
+            twitter_app.run(host="0.0.0.0", port=TWITTER_APP_DEBUG_PORT,
+                            debug=True)
         else:
             twitter_server = HTTPServer(WSGIContainer(twitter_app))
             twitter_server.listen(TWITTER_APP_PORT)

@@ -11,7 +11,7 @@ from tornado.httpserver import HTTPServer
 from tornado.ioloop import IOLoop
 # from mockchicago import views
 
-TWITTER_APP_PORT = 8001
+TWITTER_APP_PORT = 80
 
 class BadCommandError(Exception):
     pass

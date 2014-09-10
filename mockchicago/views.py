@@ -3,7 +3,7 @@ from flask import request, render_template
 from mockchicago.app import app
 from mockchicago.models import Member, Photo
 
-REMOTE_URL="//payback.ml:8001"
+REMOTE_URL="//ucmocktrial.me"
 
 @app.route("/")
 def index():

@@ -24,7 +24,7 @@ class TwitterQuery:
     <img src="{photo_url}" class="img-responsive" alt="img"></img>
     </a>
     </div>'''
-    ROW_FMT = '''<div class="row vcenter"> {} </div>'''
+    ROW_FMT = '''<div class="row"> {} </div>'''
     PER_ROW = 4
     MAX_COUNT = 20
     def __init__(self):

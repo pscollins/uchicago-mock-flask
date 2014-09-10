@@ -1,6 +1,7 @@
 import twitter
 import collections
 import itertools
+import re
 
 from twitterhook import config
 from flask import Flask
@@ -32,6 +33,7 @@ class TwitterQuery:
             config.ACCESS_SECRET,
             config.API_KEY,
             config.API_SECRET))
+        self._ws_re = re.compile("\s+")
 
     def get_photos(self):
         # resp = self.twitter.search.tweets(
@@ -61,7 +63,8 @@ class TwitterQuery:
             text = element['text']
             for image in element['images']:
                 resp.append(self.PHOTO_FMT.format(
-                    photo_url=image, photo_title=text.replace("\n", " ")))
+                    photo_url=image, photo_title=
+                    self._ws_re.sub(" ", text)))
 
         wrapped_rows = [self.ROW_FMT.format("\n".join(group))
                         for group in grouper(self.PER_ROW,

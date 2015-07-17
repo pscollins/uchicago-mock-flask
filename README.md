@@ -29,6 +29,10 @@ The project is split into two parts, which live in the `mockchicago/`
 and `twitterhook/` directories, respectively. The `run.py` file is
 responsible for kicking off both of them.
 
+# Dealing with the webiste
+
+All of the following should happen on your local machine.
+
 ## Previewing the site
 
 Once you've got everything installed, you should be able to run the webserver:
@@ -127,5 +131,7 @@ that no human being has ever looked at anyway? Yes. Yes you are.
 TODO
 
 # Making Twitter work
+
+All of the following should happen on an AWS instance.
 
 TODO

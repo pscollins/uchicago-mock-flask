@@ -128,10 +128,68 @@ that no human being has ever looked at anyway? Yes. Yes you are.
 
 ## Publishing your changes
 
-TODO
+Push over SFTP. I forget exactly how this works. You should edit this file to explain how to do it.
+
+If I remember correctly, most FTP clients won't let you recursively upload a whole folder. I used `lftp`, and did something like:
+
+	cd mockchicago/build
+	lftp sftp://pscollins@webservices.uchicago.edu
+	mirror -R
+
+See
+[this link](http://unix.stackexchange.com/questions/26934/using-sftp-to-transfer-a-directory), which is what I followed. YMMV on other OSes.
+
 
 # Making Twitter work
 
 All of the following should happen on an AWS instance.
 
-TODO
+The reason we need to go through all this trouble is that we need to make a request to Twitter to grab the recent tweets. We would like to do this with some really simple server-side code on our webserver, but UChicago doesn't let us run any server-side code.
+
+That leaves us with two options:
+
+1. Make the request in JS, on the client side, or
+2. Set up this AWS instance.
+
+The first option requires us to put our public and private Twitter keys into the HTML that we serve. We could do this --- and there's a good chance that no one would ever notice --- but then we would be terrible people. So we'll go with the second.
+
+## Set up the remote instance
+
+SSH in, clone this repo. Get openssl, with:
+
+	sudo apt-get install openssl
+
+(Assuming you've got an Ubuntu instance set up, which is what you should do in order to make this easier).
+
+Now you need to get the public and private key for Twitter set up, which are kept out of version control because it would be just as bad to put them in to version control as it would be to serve them with HTML.
+
+So:
+
+	cd twitterhook
+	make decrypt_conf
+
+Now you'll be promted for a password --- which is the same as the password to the UChicago mock trial Twitter account. After you enter it, you'll have a file called `config.py` under twitterhook.
+
+I stole this strategy from [here](http://ejohn.org/blog/keeping-passwords-in-source-control/).
+
+## Fix up your new URL
+
+It would be nice if you registered a domain name for your AWS instance, but you don't need to. You can use a service like NameCheap, which will give you a free domain.
+
+Now edit `uchicago-mock-flask/mockchicago/views.py` and change `REMOTE_URL` to:
+
+	REMOTE_URL = //YOUR_AWS_INSTANCE_GOES_HERE
+
+Where `YOUR_AWS_INSTANCE_GOES_HERE` is either the IP or URL that points to your AWS instance.
+
+## Kick off the server
+
+Run
+
+	python3 ./run.py twitter
+
+and it should just work. If it doesn't, talk to me.
+
+# Outstanding issues
+
+The size of images that come out of Twitter is awkward: we don't resize them, so they can be horribly misaligned. A better person than me could change it so that we grab a thumbnail (of a pre-known size) to keep the grid of images from Twitter a regular size.

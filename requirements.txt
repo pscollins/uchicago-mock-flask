@@ -9,7 +9,7 @@ Werkzeug==0.9.6
 certifi==14.05.14
 colorama==0.2.5
 
-html5lib==0.999
+html5lib==0.99999999
 itsdangerous==0.24
 
 

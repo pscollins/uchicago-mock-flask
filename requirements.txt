@@ -13,7 +13,7 @@ html5lib==0.999
 itsdangerous==0.24
 
 
-requests==2.2.1
+requests==2.20.0
 six==1.5.2
 tornado==4.0.1
 twitter==1.15.0
